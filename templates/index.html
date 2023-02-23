@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Race Timing System</title>
+    <base href="static"/>
+  </head>
+  <body>
+    <h1>Race Timing System</h1>
+    <div id="log"></div>
+    <br>
+    <button type=button onclick="fetch('/start')">Start</button>
+    <script>
+      const log = (text, color) => {
+        document.getElementById('log').innerHTML += `<span style="color: ${color}">${text}</span><br>`;
+      };
+
+      const socket = new WebSocket('ws://' + location.host + '/updates');
+      socket.addEventListener('message', ev => {
+        let msg = JSON.parse(ev.data);
+
+        log(msg.type, 'blue');
+      });
+    </script>
+  </body>
+</html>
