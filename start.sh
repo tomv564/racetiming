@@ -1,0 +1,1 @@
+GPIOZERO_PIN_FACTORY=mock FLASK_APP=main flask run
